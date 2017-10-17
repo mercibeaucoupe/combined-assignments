@@ -26,7 +26,10 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (b == 0) {
+    		throw new IllegalArgumentException("Can't divide by zero! Try Again.");
+    	}
+    	return a % b == 0;
     }
 
     /**
@@ -41,7 +44,14 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new NotImplementedException();
+        if (divides(n, 3) && !divides(n, 5)) {
+        	return n + ":" + "Fizz";
+        } else if (!divides(n, 3) && divides(n, 5)) {
+        	return n + ":" + "Buzz";
+        } else if (divides(n, 3) && divides(n, 5)) {
+        	return n + ":" + "FizzBuzz";
+        }
+        return null;
     }
 
     /**
@@ -55,7 +65,23 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	int index = 0;
+    	int arrayLength = 0;
+        if (start > end) {
+        	throw new IllegalArgumentException("The range of integers is invalid. Try again.");
+        }
+        for (int i = start; i <= end; i++) {
+        	if (message(i) != null) {
+        		arrayLength++;
+        	}
+        }
+        String[] result = new String[arrayLength];
+        for (int i = start; i <= end; i++) {
+        	if (message(i) != null) {
+        	    result[index++] = message(i);
+        	}
+        }
+        return result;
     }
 
     /**
@@ -63,7 +89,10 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new NotImplementedException();
+        String[] test = messages(1, 115);
+        for (String temp: test) {
+        	System.out.println(temp);
+        }
     }
 
 }

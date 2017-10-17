@@ -24,7 +24,13 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (i < 0) {
+        	throw new IllegalArgumentException("Index was negative. Try Again!");
+        }
+        if (i == 0 || i == 1) {
+        	return 1;
+        }
+        return atIndex(i - 1) + atIndex(i - 2);
     }
 
     /**
@@ -38,7 +44,23 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	int index = 0;
+    	int arrayLength = 0;
+    	if ((start < 0 || end < 0) || (start > end)) {
+    		throw new IllegalArgumentException("Invalid range was passed, Try Again!");
+    	}
+    	if (end == 0) {
+    		int[] results = new int[0];
+    	    return results;
+    	}
+    	for (int i = start; i <= end; i++) {
+    		arrayLength++;
+    	}
+    	int[] result = new int[arrayLength - 1];
+        for (int i = start; i < end; i++) {
+        	result[index++] = atIndex(i);
+        }
+        return result;
     }
 
     /**
@@ -49,6 +71,9 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (count < 0) {
+        	throw new IllegalArgumentException("The parameter was negative, Try Again!");
+        }
+        return slice(0, count);
     }
 }
