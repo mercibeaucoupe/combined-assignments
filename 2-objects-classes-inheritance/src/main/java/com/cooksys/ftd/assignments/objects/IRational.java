@@ -54,7 +54,10 @@ interface IRational {
 	 *             if the numerator of this rational value is 0
 	 */
 	default IRational invert() throws IllegalStateException {
-		throw new NotImplementedException();
+		if (getNumerator() == 0) {
+			throw new IllegalStateException("The numerator is 0, Cannot invert and have rational divide by zero!");
+		}
+		return construct(getDenominator(), getNumerator());
 	}
 
 	/**
@@ -69,7 +72,12 @@ interface IRational {
 	 *             if that is null
 	 */
 	default IRational add(IRational that) throws IllegalArgumentException {
-		throw new NotImplementedException();
+		if (that == null) {
+			throw new IllegalArgumentException("Argument did not have a value, Try Again!");
+		}
+		int resultNumerator = (getNumerator() * that.getDenominator()) + (that.getNumerator() * getDenominator());
+		int resultDenominator = getDenominator() * that.getDenominator();
+		return construct(resultNumerator, resultDenominator);
 	}
 
 	/**
@@ -84,7 +92,12 @@ interface IRational {
 	 *             if that is null
 	 */
 	default IRational sub(IRational that) throws IllegalArgumentException {
-		throw new NotImplementedException();
+		if (that == null) {
+			throw new IllegalArgumentException("Argument did not have a value, Try Again!");
+		}
+		int resultNumerator = (getNumerator() * that.getDenominator()) - (that.getNumerator() * getDenominator());
+		int resultDenominator = getDenominator() * that.getDenominator();
+		return construct(resultNumerator, resultDenominator);
 	}
 
 	/**
@@ -99,7 +112,12 @@ interface IRational {
 	 *             if that is null
 	 */
 	default IRational mul(IRational that) throws IllegalArgumentException {
-		throw new NotImplementedException();
+		if (that == null) {
+			throw new IllegalArgumentException("Argument did not have a value, Try Again!");
+		}
+		int resultNumerator = getNumerator() * that.getNumerator();
+		int resultDenominator = getDenominator() * that.getDenominator();
+		return construct(resultNumerator, resultDenominator);
 	}
 
 	/**
@@ -114,6 +132,11 @@ interface IRational {
 	 *             if that is null or if the numerator of that is 0
 	 */
 	default IRational div(IRational that) throws IllegalArgumentException {
-		throw new NotImplementedException();
+		if (that == null) {
+			throw new IllegalArgumentException("Argument did not have a value, Try Again!");
+		}
+		int resultNumerator = getNumerator() * that.getDenominator();
+		int resultDenominator = getDenominator() * that.getNumerator();
+		return construct(resultNumerator, resultDenominator);
 	}
 }

@@ -14,8 +14,15 @@ public class Rational implements IRational {
      * @param denominator the denominator of the rational value
      * @throws IllegalArgumentException if the given denominator is 0
      */
+	private int numerator;
+	private int denominator;
+	
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (denominator == 0) {
+    		throw new IllegalArgumentException("Denominator is 0, Cannot divide by zero!");
+    	}
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -23,7 +30,7 @@ public class Rational implements IRational {
      */
     @Override
     public int getNumerator() {
-        throw new NotImplementedException();
+        return numerator;
     }
 
     /**
@@ -31,7 +38,7 @@ public class Rational implements IRational {
      */
     @Override
     public int getDenominator() {
-        throw new NotImplementedException();
+        return denominator;
     }
 
     /**
@@ -47,7 +54,11 @@ public class Rational implements IRational {
      */
     @Override
     public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (denominator == 0) {
+    		throw new IllegalArgumentException("The deniminator is 0, Cannot divide by 0!");
+    	}
+        Rational rational = new Rational(numerator, denominator);
+        return rational;
     }
 
     /**
@@ -58,7 +69,15 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new NotImplementedException();
+    	if (obj == this) {
+    		return true;
+    	}
+    	
+    	if (!(obj instanceof Rational)) {
+    		return false;
+    	}
+        Rational o = (Rational) obj;
+        return (this.getNumerator() == o.getNumerator() && this.getDenominator() == o.getDenominator());
     }
 
     /**
@@ -70,6 +89,13 @@ public class Rational implements IRational {
      */
     @Override
     public String toString() {
-        throw new NotImplementedException();
+        if (this.getNumerator() < 0 && this.getDenominator() < 0) {
+        	return Math.abs(this.getNumerator()) + "/" + Math.abs(this.getDenominator());
+        } else if (this.getNumerator() < 0 && this.getDenominator() > 0) {
+        	return "-" + Math.abs(this.getNumerator()) + "/" + Math.abs(this.getDenominator());
+        } else if (this.getNumerator() > 0 && this.getDenominator() < 0) {
+        	return "-" + Math.abs(this.getNumerator()) + "/" + Math.abs(this.getDenominator());
+        }
+        return this.getNumerator() + "/" + this.getDenominator();
     }
 }
