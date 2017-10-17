@@ -30,7 +30,14 @@ public class Fibonacci {
         if (i == 0 || i == 1) {
         	return 1;
         }
-        return atIndex(i - 1) + atIndex(i - 2);
+        int[] fibArray = new int[i + 1];
+        fibArray[0] = 1;
+        fibArray[1] = 1;
+        for (int j = 2; j <= i; j++) {
+        	fibArray[j] = fibArray[j - 1] + fibArray[j - 2];
+        }
+        
+        return fibArray[i];
     }
 
     /**
