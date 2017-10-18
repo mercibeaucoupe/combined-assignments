@@ -1,7 +1,5 @@
 package com.cooksys.ftd.assignments.objects;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Rational implements IRational {
     /**
      * Constructor for rational values of the type:

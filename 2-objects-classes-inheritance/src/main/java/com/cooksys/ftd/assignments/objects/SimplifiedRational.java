@@ -1,11 +1,9 @@
 package com.cooksys.ftd.assignments.objects;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class SimplifiedRational implements IRational {
 	private int numerator;
 	private int denominator;
-	private static boolean negative;
+	
     /**
      * Determines the greatest common denominator for the given values
      *
